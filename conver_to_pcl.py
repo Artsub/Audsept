@@ -141,21 +141,13 @@ def mono_to_color(X, mean=None, std=None, norm_max=None, norm_min=None, eps=1e-6
 
 
 def convert_wav_to_image(df, source):
-    """
-    X = []
-    for i, row in tqdm_notebook(df.iterrows()):
-        x = read_as_melspectrogram(conf, source/str(row.fname), trim_long_data=False)
-        x_color = mono_to_color(x)
-        X.append(x_color)
-    """
+    
     x = read_as_melspectrogram(conf, source, trim_long_data=False, debug_display=True)
     return x
 
 
 def save_as_pkl_binary(obj, filename):
-    """Save object as pickle binary file.
-    Thanks to https://stackoverflow.com/questions/19201290/how-to-save-a-dictionary-to-a-file/32216025
-    """
+    
     with open(filename, 'wb') as f:
         pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
 
@@ -176,12 +168,7 @@ def convert_dataset(df, source_folder, filename):
     return X
 
 
-"""
-a = open("same", "wb")
-a.close()
-image = convert_wav_to_image("BLYAT", "C:/ores/bigy1-9.wav")
-save_as_pkl_binary(image, "temp")
-"""
+
 files = os.listdir(path=f"{os.path.join(os.getcwd(), 'music')}")
 for i, el in enumerate(files):
 	image = convert_wav_to_image("useless", f"{os.path.join(os.getcwd(), 'music', el)}")
